@@ -15,6 +15,9 @@ class Job(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=200, blank=True)
 
+    def __str__(self):
+        return self.title
+
 class Skill(models.Model):
     name = models.TextField(max_length=100, unique=True)
     category = models.CharField(max_length=100)
