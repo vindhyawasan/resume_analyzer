@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .form import ResumeForm
 from .utils import extract_text_from_pdf
 from .skill_extractor import extract_skills
+from .job_skill_extractor import extract_job_skill
 
 def index(request):
     if request.method == "POST":

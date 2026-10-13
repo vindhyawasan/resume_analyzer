@@ -1,0 +1,68 @@
+# python manage.py shell
+# from analyzer.models import Job
+jobs = [
+    Job(
+        title="Python Django Developer",
+        company="TechNova Solutions",
+        location="Mumbai",
+        description="Required skills: Python, Django, Django REST Framework, MySQL, REST API, Git, GitHub. Responsibilities include backend development, API integration, database management and debugging."
+    ),
+    Job(
+        title="Frontend Developer",
+        company="WebWorks Technologies",
+        location="Pune",
+        description="Required skills: HTML, CSS, JavaScript, React, Bootstrap, Git. Responsibilities include responsive web design, UI development, API integration and website optimization."
+    ),
+    Job(
+        title="Data Analyst",
+        company="DataVision Analytics",
+        location="Bengaluru",
+        description="Required skills: Python, SQL, MySQL, Pandas, NumPy, Matplotlib, Excel, Statistics. Responsibilities include data cleaning, data analysis, visualization and reporting."
+    ),
+    Job(
+        title="Machine Learning Engineer",
+        company="AI Future Labs",
+        location="Hyderabad",
+        description="Required skills: Python, NumPy, Pandas, Scikit-learn, Machine Learning, SQL, Statistics, Git. Responsibilities include model training, feature engineering, model evaluation and deployment."
+    ),
+    Job(
+        title="Java Developer",
+        company="CodeCraft Systems",
+        location="Chennai",
+        description="Required skills: Java, Spring Boot, Hibernate, MySQL, REST API, Maven, Git, OOP. Responsibilities include application development, backend services, database integration and unit testing."
+    ),
+    Job(
+        title="Full Stack Developer",
+        company="DigitalStack Technologies",
+        location="Mumbai",
+        description="Required skills: Python, Django, JavaScript, React, HTML, CSS, PostgreSQL, REST API, Git. Responsibilities include frontend and backend development, database design and API integration."
+    ),
+    Job(
+        title="DevOps Engineer",
+        company="CloudBridge Solutions",
+        location="Noida",
+        description="Required skills: Linux, Docker, Kubernetes, AWS, Git, Jenkins, CI/CD, Python, Bash. Responsibilities include deployment automation, cloud infrastructure, monitoring and application reliability."
+    ),
+    Job(
+        title="Database Administrator",
+        company="DataCore Systems",
+        location="Delhi",
+        description="Required skills: MySQL, PostgreSQL, SQL, Database Design, Database Optimization, Linux, Backup and Recovery. Responsibilities include database maintenance, performance tuning and data security."
+    ),
+    Job(
+        title="Cybersecurity Analyst",
+        company="SecureNet Technologies",
+        location="Gurugram",
+        description="Required skills: Networking, Linux, Python, Cybersecurity, SQL, Firewalls, Vulnerability Assessment. Responsibilities include security monitoring, vulnerability analysis and incident response."
+    ),
+    Job(
+        title="Mobile App Developer",
+        company="AppSphere Technologies",
+        location="Ahmedabad",
+        description="Required skills: Java, Kotlin, Android, REST API, JSON, Git, SQL. Responsibilities include Android application development, API integration, debugging and mobile app testing."
+    )
+]
+
+Job.objects.bulk_create(jobs)
+
+# exit()

@@ -22,6 +22,9 @@ class Skill(models.Model):
     name = models.TextField(max_length=100, unique=True)
     category = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Analyze(models.Model):
     resume = models.ForeignKey(
         Resume,

@@ -1,0 +1,21 @@
+# run this in django shell
+# python manage.py shell 
+# for exit in shell = exit()
+
+from resumes.models import Skill
+from resumes.skills import SKILLS
+
+skills = []
+
+for name in SKILLS:
+    skills.append(
+        Skill(
+            name=name,
+            category="General"
+        )
+    )
+
+Skill.objects.bulk_create(
+    skills,
+    ignore_conflicts=True
+)

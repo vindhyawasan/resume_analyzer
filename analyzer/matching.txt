@@ -1,0 +1,12 @@
+from analyzer.models import Resume, Job
+from analyzer.matching import matching_resume_skill
+
+resume = Resume.objects.last()
+job = Job.objects.first()
+
+result = matching_resume_skill(
+    resume.extract_text,
+    job.description
+)
+
+print(result)
