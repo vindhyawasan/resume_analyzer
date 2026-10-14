@@ -1,0 +1,384 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #0d2745;
+    --blue: #205cbd;
+    --background: #f2f5f9;
+    --border: #dbe3ed;
+    --text: #172b4d;
+    --muted: #647895;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Header */
+
+.top-header {
+    background: var(--navy);
+    color: white;
+    border-bottom: 3px solid var(--blue);
+}
+
+.header-inner {
+    max-width: 1450px;
+    margin: auto;
+    padding: 20px 32px;
+}
+
+.header-inner h1 {
+    margin: 0;
+    font-size: 25px;
+    color: white;
+}
+
+.header-inner p {
+    margin: 5px 0 2px;
+    color: #c6d5e8;
+}
+
+/* Main two-column dashboard */
+
+.dashboard {
+    max-width: 1450px;
+    margin: 28px auto;
+    padding: 0 32px 35px;
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.left-column,
+.right-column {
+    min-width: 0;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cards */
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 22px 24px;
+    min-width: 0;
+    box-shadow: 0 2px 5px rgba(15, 39, 69, 0.02);
+    animation: fadeUp 0.45s ease both;
+}
+
+.card h2 {
+    color: var(--navy);
+    font-size: 19px;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Upload form */
+
+.upload-card form {
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    border: 0;
+    background: transparent;
+}
+
+label {
+    display: block;
+    margin: 16px 0 7px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+input[type="file"],
+select {
+    width: 100%;
+    min-width: 0;
+    padding: 11px;
+    background: white;
+    border: 1px solid #cbd6e5;
+    border-radius: 6px;
+    color: var(--text);
+    font: inherit;
+}
+
+input[type="file"] {
+    font-size: 14px;
+}
+
+select:focus,
+input:focus {
+    outline: 2px solid #c5d6ff;
+    border-color: var(--blue);
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px 16px;
+    border: none;
+    border-radius: 6px;
+    background: var(--blue);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #174a9e;
+    transform: translateY(-1px);
+}
+
+/* Job and match score */
+
+.score-section {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 8px 0 20px;
+    flex-wrap: wrap;
+}
+
+.score-circle {
+    --score: 0%;
+    width: 128px;
+    height: 128px;
+    flex: 0 0 128px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #19845b var(--score),
+        #e4e9f0 var(--score)
+    );
+    display: grid;
+    place-items: center;
+    position: relative;
+    animation: scoreIn 0.8s ease both;
+}
+
+.score-circle::before {
+    content: "";
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: white;
+}
+
+.score-circle span {
+    position: relative;
+    font-size: 29px;
+    font-weight: 750;
+    color: var(--navy);
+}
+
+.job-info h3 {
+    margin: 0;
+    font-size: 21px;
+    color: var(--navy);
+}
+
+.job-info p {
+    margin: 3px 0 10px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.job-info small {
+    color: var(--muted);
+}
+
+/* Matched and missing skills */
+
+.section-label {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 18px 0 9px;
+}
+
+.skill-box {
+    padding: 13px 15px;
+    border-radius: 6px;
+    border: 1px solid;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.matched {
+    color: #126c4a;
+    background: #eaf6f0;
+    border-color: #b7e5cf;
+}
+
+.missing {
+    color: #a52d25;
+    background: #fff0ee;
+    border-color: #ffc8c2;
+}
+
+.suggestion-box {
+    padding: 13px 15px;
+    border: 1px solid #c9d9ff;
+    border-radius: 6px;
+    background: #eef3ff;
+    color: #243e68;
+    overflow-wrap: anywhere;
+}
+
+/* Extracted skills */
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tags span {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #cbd9ff;
+    border-radius: 4px;
+    background: #eff4ff;
+    color: #244a92;
+    font-size: 14px;
+    animation: fadeUp 0.4s ease both;
+}
+
+/* Uploaded file */
+
+.file-name {
+    overflow-wrap: anywhere;
+}
+
+.file-name span {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #f0f3f7;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Full-width readable resume text */
+
+.resume-text {
+    width: 100%;
+    min-height: 220px;
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #f8fafc;
+    color: #344b6b;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+/* Error */
+
+.error {
+    padding: 10px 12px;
+    border-radius: 5px;
+    color: #b42318;
+    background: #fff0ee;
+}
+
+/* Animations */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scoreIn {
+    from {
+        opacity: 0;
+        transform: rotate(-45deg) scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+/* Mobile and tablet */
+
+@media (max-width: 850px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+        padding: 0 20px 25px;
+        margin-top: 20px;
+    }
+
+    .left-column {
+        width: 100%;
+    }
+
+    .header-inner {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard {
+        padding: 0 12px 20px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .score-section {
+        gap: 18px;
+    }
+
+    .score-circle {
+        width: 110px;
+        height: 110px;
+        flex-basis: 110px;
+    }
+
+    .score-circle::before {
+        width: 82px;
+        height: 82px;
+    }
+
+    .score-circle span {
+        font-size: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

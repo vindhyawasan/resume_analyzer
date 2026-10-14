@@ -1,51 +1,132 @@
+
+{% load static %}
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Resume Upload</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
 
-    <h1>Resume Analyzer</h1>
+<header class="top-header">
+    <div class="header-inner">
+        <h1>Resume Analyzer</h1>
+        <p>Compare your resume against a job and see where you stand.</p>
+    </div>
+</header>
 
-    <h2>Upload Resume</h2>
+<main class="dashboard">
 
-    <form method="POST" enctype="multipart/form-data">
+    <!-- Left column -->
+    <aside class="left-column">
+        <section class="card upload-card">
+            <h2>Upload Your Resume</h2>
 
-        {% csrf_token %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
 
-        {{ form.as_p }}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <button type="submit">
-            Upload Resume
-        </button>
+                <label for="id_file">Resume file</label>
+                {{ form.file }}
 
-    </form>
+                <label for="job">Select Job</label>
+                <select name="job" id="job" required>
+                    <option value="">Select a job</option>
+                    {% for job in jobs %}
+                        <option value="{{ job.id }}">
+                            {{ job.title }} - {{ job.company }}
+                        </option>
+                    {% endfor %}
+                </select>
 
+                <button type="submit">Analyze Resume</button>
+            </form>
+        </section>
+    </aside>
 
-    {% if resume %}
+    <!-- Right column -->
+    <div class="right-column">
 
-        <h3>Resume uploaded successfully!</h3>
+        {% if analysis %}
+        <section class="card analysis-card">
+            <h2>Resume Analysis Result</h2>
 
-        <p>
-            File: {{ resume.file.name }}
-        </p>
-        <p>
-            {{ resume.extract_text }}
-        </p>
+            <div class="score-section">
+                <div class="score-circle"
+                     style="--score: {{ analysis.score }}%;">
+                    <span>{{ analysis.score }}%</span>
+                </div>
 
-    {% endif %}
+                <div class="job-info">
+                    <h3>{{ analysis.job.title }}</h3>
+                    <p>{{ analysis.job.company }}</p>
+                    <small>Resume match score</small>
+                </div>
+            </div>
 
-    {% if skills %}
-        <h3>Extracted Skills:</h3>
-        <ul>
-            {% for skill in skills %}
-                <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+            <h3 class="section-label">Matched Skills</h3>
+            <div class="skill-box matched">
+                {% if analysis.matched_skills %}
+                    {{ analysis.matched_skills }}
+                {% else %}
+                    No matched skills found.
+                {% endif %}
+            </div>
+
+            <h3 class="section-label">Missing Skills</h3>
+            <div class="skill-box missing">
+                {% if analysis.missing_skills %}
+                    {{ analysis.missing_skills }}
+                {% else %}
+                    No missing skills detected.
+                {% endif %}
+            </div>
+
+            <h3 class="section-label">Suggestion</h3>
+            <div class="suggestion-box">
+                {% if analysis.suggestion %}
+                    {{ analysis.suggestion }}
+                {% else %}
+                    Learn the missing skills to improve your job match score.
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if skills %}
+        <section class="card">
+            <h2>Extracted Skills</h2>
+            <div class="skill-tags">
+                {% for skill in skills %}
+                    <span>{{ skill }}</span>
+                {% empty %}
+                    <p>No skills detected.</p>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if resume %}
+        <section class="card resume-card">
+            <h2>Uploaded Resume</h2>
+
+            <!-- <p class="file-name">
+                <strong>File:</strong>
+                <span>{{ resume.file.name }}</span>
+            </p> -->
+
+            <h3 class="section-label">Extracted Resume Text</h3>
+            <div class="resume-text">{{ resume.extract_text }}</div>
+        </section>
+        {% endif %}
+
+    </div>
+</main>
 
 </body>
-
 </html>
