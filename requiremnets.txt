@@ -1,2 +1,4 @@
 django
 pillow
+pypdf
+python-docx
